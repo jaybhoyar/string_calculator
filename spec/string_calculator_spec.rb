@@ -31,5 +31,11 @@ RSpec.describe StringCalculator do
       expect { StringCalculator.add("5,6,\n") }.to raise_error(ArgumentError, "Invalid Input")
     end
 
+    it "handles different delimiters" do
+      expect(StringCalculator.add("//;\n5;6")).to eq(11)
+      expect(StringCalculator.add("//;\n5;6;8")).to eq(19)
+      expect(StringCalculator.add("//\n5//6;8")).to eq(19)
+    end
+
   end
 end
