@@ -19,5 +19,17 @@ RSpec.describe StringCalculator do
     it "returns the sum of multiple numbers" do
       expect(StringCalculator.add("5,6,8")).to eq(19)
     end
+
+    it "handles new lines between numbers" do
+      expect(StringCalculator.add("5\n6")).to eq(11)
+      expect(StringCalculator.add("5\n6,8")).to eq(19)
+    end
+
+    it "throws error for invalid new lines in numbers" do
+      expect { StringCalculator.add("\n,5,6") }.to raise_error(ArgumentError, "Invalid Input")
+      expect { StringCalculator.add("5\n,6") }.to raise_error(ArgumentError, "Invalid Input")
+      expect { StringCalculator.add("5,6,\n") }.to raise_error(ArgumentError, "Invalid Input")
+    end
+
   end
 end
