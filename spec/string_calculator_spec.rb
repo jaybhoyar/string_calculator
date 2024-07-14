@@ -37,5 +37,9 @@ RSpec.describe StringCalculator do
       expect(StringCalculator.add("//\n5//6;8")).to eq(19)
     end
 
+    it "handles complex delimiters" do
+      expect(StringCalculator.add("//\n5;6;\n8")).to eq(19)
+      expect(StringCalculator.add("//&&&\n5&&&6&&&8")).to eq(19)
+    end
   end
 end
