@@ -12,6 +12,9 @@ module StringCalculator
 
     delimiters, numbers = extract_delimiters(numbers)
     sanitized_numbers = remove_newlines(numbers)
+
+    check_for_negatives(sanitized_numbers, delimiters)
+
     sanitized_numbers.split(delimiters).map(&:to_i).sum
   end
 end

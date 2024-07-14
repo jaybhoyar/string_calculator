@@ -21,4 +21,10 @@ module StringCalculatorHelper
 
     [delimiters, numbers]
   end
+
+  def check_for_negatives(numbers, delimiters)
+    num_list = numbers.split(delimiters).map(&:to_i)
+    negatives = num_list.select { |num| num < 0 }
+    raise ArgumentError, "Negatives not allowed: #{negatives.join(', ')}" unless negatives.empty?
+  end
 end
