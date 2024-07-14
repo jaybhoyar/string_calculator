@@ -1,6 +1,6 @@
 
 module Error
-  def raise_argument_error
-    raise ArgumentError, "Invalid Input"
+  def raise_argument_error(message = "Invalid Input")
+    raise ArgumentError, message
   end
 end

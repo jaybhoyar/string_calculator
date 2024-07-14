@@ -10,11 +10,12 @@ module StringCalculator
     return 0 if numbers.nil? || numbers.empty?
     raise_argument_error if invalid_newlines?(numbers)
 
-    delimiters, numbers = extract_delimiters(numbers)
-    sanitized_numbers = remove_newlines(numbers)
+    delimiter, numbers = extract_delimiters(numbers)
+    sanitized_numbers = remove_newlines(numbers, delimiter)
 
-    check_for_negatives(sanitized_numbers, delimiters)
+    negatives = check_for_negatives(sanitized_numbers, delimiter)
+    raise_argument_error("Negatives not allowed: #{negatives.join(', ')}") unless negatives.empty?
 
-    sanitized_numbers.split(delimiters).map(&:to_i).sum
+    sanitized_numbers.split(delimiter).map(&:to_i).sum
   end
 end
