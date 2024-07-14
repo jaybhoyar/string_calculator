@@ -16,6 +16,6 @@ module StringCalculator
     negatives = check_for_negatives(sanitized_numbers, delimiter)
     raise_argument_error("Negatives not allowed: #{negatives.join(', ')}") unless negatives.empty?
 
-    sanitized_numbers.split(delimiter).map(&:to_i).sum
+    sanitized_numbers.split(delimiter).map(&:to_i).reject { |num| num > 1000 }.sum
   end
 end
